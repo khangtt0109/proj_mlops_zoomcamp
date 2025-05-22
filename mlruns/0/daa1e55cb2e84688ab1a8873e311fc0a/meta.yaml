@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/khangtt/Desktop/Back_up/multi_project/project_mlops/mlops_zoomcamps/mlruns/0/daa1e55cb2e84688ab1a8873e311fc0a/artifacts
+end_time: 1747930811174
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: daa1e55cb2e84688ab1a8873e311fc0a
+run_name: aged-sheep-347
+run_uuid: daa1e55cb2e84688ab1a8873e311fc0a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747930800043
+status: 4
+tags: []
+user_id: khangtt

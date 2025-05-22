@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/khangtt/Desktop/Back_up/multi_project/project_mlops/mlops_zoomcamps/mlruns/0/72410ae631b64af394ffe53335d5725a/artifacts
+end_time: 1747931078562
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 72410ae631b64af394ffe53335d5725a
+run_name: salty-rat-166
+run_uuid: 72410ae631b64af394ffe53335d5725a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747931067652
+status: 3
+tags: []
+user_id: khangtt

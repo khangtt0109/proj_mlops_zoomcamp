@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/khangtt/Desktop/Back_up/multi_project/project_mlops/mlops_zoomcamps/mlruns/0/17019df6d63241f7a0f41bbe3b52d408/artifacts
+end_time: 1747931007145
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 17019df6d63241f7a0f41bbe3b52d408
+run_name: nimble-midge-672
+run_uuid: 17019df6d63241f7a0f41bbe3b52d408
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747930996201
+status: 3
+tags: []
+user_id: khangtt
