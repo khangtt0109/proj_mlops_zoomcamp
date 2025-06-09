@@ -11,7 +11,8 @@ mlops_zoomcamps/
 ├── artifacts/                # MLflow artifacts (models, plots, etc.)
 ├── data/
 │   ├── homework_1/           # Raw data for Homework 1
-│   └── homework_2/           # Raw data for Homework 2
+│   ├── homework_2/           # Raw data for Homework 2
+│   └── homework_3/           # Raw data for Homework 3
 ├── mlruns/                   # MLflow tracking directory
 ├── output/                   # Processed data and outputs
 ├── homework_1.ipynb          # Homework 1 notebook
@@ -30,17 +31,16 @@ mlops_zoomcamps/
 ## Setup & Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone <your-repo-url>
    cd mlops_zoomcamps
    ```
 
-````
-
 2. **Install dependencies:**
    ```bash
-pip install -r requirements.txt
-````
+   pip install -r requirements.txt
+   ```
 
 ---
 
@@ -115,6 +115,46 @@ http://localhost:5001
 
 ---
 
+## Homework 3: Docker and MLflow Deployment
+
+- **Goal:** Containerize the ML application and deploy MLflow tracking server using Docker.
+
+### 1. Project Structure
+
+```
+mlops/
+├── mlflow.dockerfile         # Dockerfile for MLflow server
+├── docker-compose.yml        # Docker Compose configuration
+├── mlflow_data/             # MLflow data storage
+└── scripts/                 # Database initialization scripts
+```
+
+### 2. Start the Services
+
+```bash
+# Create necessary directories
+mkdir -p mlflow_data
+chmod 777 mlflow_data
+
+# Start all services
+docker-compose up --build
+```
+
+### 3. Access Services
+
+- MLflow UI: http://localhost:5001
+- Mage UI: http://localhost:6789
+
+### 4. Features
+
+- Containerized MLflow tracking server
+- Persistent storage for MLflow data
+- Integration with Mage platform
+- PostgreSQL database with pgvector support
+- Automatic service restart on failure
+
+---
+
 ## Requirements
 
 All dependencies are listed in `requirements.txt`. Main packages:
@@ -125,6 +165,8 @@ All dependencies are listed in `requirements.txt`. Main packages:
 - click
 - pandas
 - numpy
+- docker
+- docker-compose
 
 ---
 
