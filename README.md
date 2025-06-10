@@ -23,7 +23,11 @@ mlops_zoomcamps/
 ├── register_model.py         # Model registration script
 ├── mlflow.db                 # SQLite DB for MLflow tracking
 ├── requirements.txt          # Project dependencies
-└── README.md                 # This file
+├── README.md                 # This file
+├── homework_4/               # Homework 4: Dockerized prediction
+│   ├── predict.py            # Prediction script (CLI)
+│   ├── Dockerfile            # Dockerfile for building the container
+│   └── model.bin             # Pre-trained model and vectorizer (provided in base image)
 ```
 
 ---
@@ -152,6 +156,41 @@ docker-compose up --build
 - Integration with Mage platform
 - PostgreSQL database with pgvector support
 - Automatic service restart on failure
+
+---
+
+## Homework 4: Model Packaging and Docker
+
+- **Goal:** Package the prediction script in a Docker container using a pre-built base image with the model and vectorizer.
+
+### 1. Project Structure
+
+```
+homework_4/
+├── predict.py      # CLI script for making predictions
+├── Dockerfile      # Dockerfile for building the container
+```
+
+### 2. Build the Docker Image
+
+Make sure you are in the `homework_4` directory:
+
+```bash
+cd homework_4
+
+docker build -t taxi-prediction .
+```
+
+### 3. Run the Prediction Script in Docker
+
+To predict the mean duration for a specific year and month (e.g., May 2023):
+
+```bash
+docker run -it taxi-prediction --year 2023 --month 5
+```
+
+- The script will output the mean predicted duration for the specified month.
+- The model and vectorizer are already included in the base image (`agrigorev/zoomcamp-model:mlops-2024-3.10.13-slim`).
 
 ---
 
