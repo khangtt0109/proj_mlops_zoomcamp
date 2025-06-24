@@ -194,21 +194,29 @@ docker run -it taxi-prediction --year 2023 --month 5
 
 ---
 
-## Requirements
+## Homework 5: Monitoring and Data Quality
 
-All dependencies are listed in `requirements.txt`. Main packages:
+- **Goal:** Monitor data quality and model metrics for NYC Taxi trip duration prediction using Evidently, PostgreSQL, and Grafana.
+- **Steps:**
 
-- mlflow
-- scikit-learn
-- hyperopt
-- click
-- pandas
-- numpy
-- docker
-- docker-compose
+  1. Download and prepare the March 2024 Green Taxi dataset.
+  2. Expand data quality metrics using Evidently (e.g., add quantile and custom metrics).
+  3. Store metrics in a PostgreSQL database for batch monitoring.
+  4. Visualize metrics and data quality in Grafana dashboards.
+  5. Save and manage dashboard configurations for reproducibility.
+
+- **How to run:**
+
+  - Open and run `homework_5.ipynb` in Jupyter Notebook.
+  - Follow the notebook cells to process data, compute metrics, and interact with dashboards.
+
+- **Main tools:**
+  - Evidently (for data quality and drift metrics)
+  - PostgreSQL (for metrics storage)
+  - Grafana (for dashboard visualization)
 
 ---
 
-## License
+## Requirements
 
-This project is for educational purposes as part of the [MLOps Zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp) course.
+All dependencies are listed in `
