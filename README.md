@@ -217,6 +217,116 @@ docker run -it taxi-prediction --year 2023 --month 5
 
 ---
 
+## Homework 6: Testing, Integration, and S3 Mocking with Localstack
+
+**Goal:** Refactor the batch inference code, add unit and integration tests, and mock S3 using Localstack for robust ML batch pipelines.
+
+### 1. Refactor `batch.py`
+
+- Move all logic into a `main(year, month)` function.
+- Extract a `prepare_data(df, categorical)` function for data preprocessing.
+- Remove all global variables; pass parameters explicitly.
+- Add `get_input_path` and `get_output_path` functions to support environment-based input/output paths for both testing and production.
+
+### 2. Unit Test for `prepare_data`
+
+- Create a `homework_6/tests/` directory with a `test_batch.py` file.
+- Write a test for `prepare_data` using a sample dataframe, checking that only valid rows are kept.
+- Run the test:
+  ```bash
+  cd homework_6
+  pytest tests/
+  ```
+
+### 3. Configure Localstack to Mock S3
+
+- Create a `docker-compose.yaml` in `homework_6`:
+  ```yaml
+  services:
+    localstack:
+      image: localstack/localstack:latest
+      ports:
+        - "4566:4566"
+      environment:
+        - SERVICES=s3
+        - DEBUG=1
+        - DATA_DIR=/tmp/localstack/data
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+  ```
+- Start Localstack:
+  ```bash
+  cd homework_6
+  docker-compose up -d
+  ```
+- Create a mock S3 bucket:
+  ```bash
+  export AWS_ACCESS_KEY_ID=test
+  export AWS_SECRET_ACCESS_KEY=test
+  export AWS_DEFAULT_REGION=us-east-1
+  aws s3 mb s3://nyc-duration --endpoint-url http://localhost:4566
+  ```
+
+### 4. Read/Write S3 via Localstack in `batch.py`
+
+- Use the `S3_ENDPOINT_URL` environment variable and `storage_options` when reading/writing Parquet files with pandas.
+- Add a `save_data(df, filename)` function to handle saving to S3 or local files.
+
+### 5. Create Test Data and Run Integration Test
+
+- Create `integration_test.py`:
+  - Generate a test dataframe (same as the unit test).
+  - Save it to the mock S3 bucket (Localstack).
+  - Set environment variables for `batch.py`.
+  - Call `batch.py` to process the batch.
+  - Read the output file from S3 and compute the sum of predicted durations.
+- Install the required package:
+  ```bash
+  pip install s3fs
+  ```
+- Run the integration test:
+  ```bash
+  python integration_test.py
+  ```
+- Expected output:
+  ```
+  Sum of predicted durations: 36.28
+  ```
+
+### 6. End-to-End Summary
+
+- Refactor code, write unit tests, configure Localstack, and test the batch pipeline with mock S3 data.
+- Ensure all steps are automated and easily repeatable.
+
+---
+
+**Quick Start for Homework 6:**
+
+```bash
+# Install required packages
+pip install -r requirements.txt
+pip install s3fs
+
+# Start Localstack
+cd homework_6
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_DEFAULT_REGION=us-east-1
+docker-compose up -d
+aws s3 mb s3://nyc-duration --endpoint-url http://localhost:4566
+
+# Run the integration test
+python integration_test.py
+```
+
+**Expected final result:**
+
+```
+Sum of predicted durations: 36.28
+```
+
+---
+
 ## Requirements
 
-All dependencies are listed in `
+All dependencies are listed in `requirements.txt`
